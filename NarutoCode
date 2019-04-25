@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		// CONSTANTS
+		var CANVAS_WIDTH = 800;
+		var CANVAS_HEIGHT = 600;
+		var NANONAUT_WIDTH = 223.699999;
+		var NANONAUT_HEIGHT = 230;
+		var GROUND_Y = 540;
+		var NANONAUT_Y_ACCELERATION = 1;
+		var SPACE_KEYCODE = 32;
+		var NANONAUT_JUMP_SPEED = 20;
+		var NANONAUT_X_SPEED = 5;
+		var BACKGROUND_WIDTH = 1000;
+		var NANONAUT_NR_FRAMES_PER_ROW = 4;
+		var NANONAUT_NR_ANIMATION_FRAMES = 4;
+		var NANONAUT_ANIMATION_SPEED = 2;
+
+
+		// SETUP
+		var canvas = document.createElement('canvas');
+		var c = canvas.getContext('2d');
+		canvas.width = CANVAS_WIDTH
+		canvas.height = CANVAS_HEIGHT
+		document.body.appendChild(canvas)
+
+
+		var nanonautImage = new Image();
+		nanonautImage.src = 'animatedNaruto2.png';
+
+		var backgroundImage = new Image();
+		backgroundImage.src = 'background.png';
+
+		var nanonautSpriteSheet = {
+			nrFramesPerRow: 5,
+			spriteWidth: NANONAUT_WIDTH,
+			spriteHieght: NANONAUT_HEIGHT,
+			image: nanonautImage
+		};
+		
+
+
+
+		var nanonautX = CANVAS_WIDTH / 2;
+		var nanonautY = GROUND_Y - NANONAUT_HEIGHT;
+
+		
+
+		window.addEventListener('keydown', onKeyDown);
+
+		window.addEventListener('keyup', onKeyUp);
+
+
+		window.addEventListener('load', start);
+		function start(){
+		window.requestAnimationFrame(mainloop);
+	}
+
+		var nanonautYSpeed = 0;
+
+
+		var spaceKeyIsPressed = false;
+
+		var nanonautIsInTheAir = false;
+
+		var cameraX = 0
+		var cameraY = 0
+
+		var nanonautFrameFr = 0;
+		var gameFrameCounter = 0;
+
+
+
+
+
+		// MAIN LOOP
+		function mainloop(){
+			update();
+			draw();
+			window.requestAnimationFrame(mainloop);
+		}
+
+
+
+
+
+		// PLAYER INPUT
+		function onKeyDown(event){
+			if (event.keyCode === SPACE_KEYCODE) {
+				spaceKeyIsPressed = true;
+			}
+		}
+
+		function onKeyUp(event){
+			if (event.keyCode === SPACE_KEYCODE) {
+				spaceKeyIsPressed = false;
+			}
+		}
+
+
+
+
+
+
+
+		// UPDATING
+		function update(){
+			nanonautY = nanonautY + nanonautYSpeed;
+			nanonautYSpeed = nanonautYSpeed + NANONAUT_Y_ACCELERATION;
+			nanonautX = nanonautX + NANONAUT_X_SPEED;
+			gameFrameCounter = gameFrameCounter + 1;
+
+			
+
+			if (spaceKeyIsPressed){
+				nanonautYSpeed = -NANONAUT_JUMP_SPEED;
+				nanonautIsInTheAir = true;
+			}
+
+			if (nanonautY > (GROUND_Y - NANONAUT_HEIGHT)) {
+				nanonautY = GROUND_Y - NANONAUT_HEIGHT;
+				nanonautYSpeed = 0;
+				nanonautIsInTheAir = false;
+			}
+
+			//update camera
+			cameraX = nanonautX - 150;
+
+			//update animation
+			if ((gameFrameCounter % NANONAUT_ANIMATION_SPEED) === 0) {
+				nanonautFrameFr = nanonautFrameFr + 1;
+				if (nanonautFrameFr >= NANONAUT_NR_ANIMATION_FRAMES) {
+					nanonautFrameFr = 0;
+				}
+			}
+
+
+		}
+			
+
+
+
+		// DRAWING 
+		function draw(){
+			c.clearRect(0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+			// Draw the Sky.
+			c.fillStyle = '#a3f5f7'
+			c.fillRect(0,0, CANVAS_WIDTH, GROUND_Y - 40);
+
+			// Draw the backgorund
+			var backgorundX = - (cameraX % BACKGROUND_WIDTH);
+			c.drawImage(backgroundImage, backgorundX, -210);
+			c.drawImage(backgroundImage, backgorundX + BACKGROUND_WIDTH, - 210);
+		
+
+			//Draw the Ground.
+			c.fillStyle = '#186d34'
+			c.fillRect(0, GROUND_Y - 40, CANVAS_WIDTH, CANVAS_HEIGHT - GROUND_Y + 40);
+
+
+			//draw the nanonaut
+			var nanonautSpriteSheetRow = Math.floor(nanonautFrameFr / NANONAUT_NR_FRAMES_PER_ROW);
+			var nanonautSpriteSheetColumn =  nanonautFrameFr % NANONAUT_NR_FRAMES_PER_ROW;
+			var nanonautSpriteSheetX = nanonautSpriteSheetColumn * NANONAUT_WIDTH;
+			var nanonautSpriteSheetY = nanonautSpriteSheetRow * NANONAUT_HEIGHT;
+			c.drawImage(nanonautImage, nanonautSpriteSheetX, nanonautSpriteSheetY, NANONAUT_WIDTH, NANONAUT_HEIGHT, nanonautX - cameraX, nanonautY - cameraY, NANONAUT_WIDTH, NANONAUT_HEIGHT);
+		}
+
+
+
+	</script>
+
+</body>
+</html>
