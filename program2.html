@@ -15,6 +15,7 @@
 	var SPACE_KEYCODE = 32;
 	var NANONAUT_JUMP_SPEED = 20;
 	var NANONAUT_X_SPEED = 5;
+	var BACKGROUND_WIDTH = 1000;
 
 	// SETUP
 	var canvas = document.createElement('canvas');
@@ -97,7 +98,10 @@
 		c.fillRect(0, 0, CANVAS_WIDTH, GROUND_Y -40);
 
 		//Draw the background.
-		c.drawImage(backgroundImage, 0 - cameraX, -210);
+		var backgroundx = - (cameraX % BACKGROUND_WIDTH);
+		c.drawImage(backgroundImage, backgroundx, -210);
+		c.drawImage(backgroundImage,backgroundx + BACKGROUND_WIDTH, -210);
+
 
 		// Draw the ground.
 		c.fillStyle = 'ForestGreen';
