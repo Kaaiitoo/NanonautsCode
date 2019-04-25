@@ -22,6 +22,9 @@
 	var nanonautImage = new Image();
 	nanonautImage.src = 'nanonaut.png';
 
+	var backgroundImage = new Image();
+	backgroundtImage.src = 'background.png';
+
 	var nanonautX = 50;
 	var nanonautY = 40;
 
@@ -49,9 +52,6 @@
 	//DRAWING
 	function draw(){
 		c.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-		// draw the nanonaut
-		c.drawImage(nanonautImage, nanonautX, nanonautY);
 		
 		// Draw the sky.
 		c.fillStyle = 'LightSkyBlue';
@@ -60,6 +60,9 @@
 		// Draw the ground.
 		c.fillStyle = 'ForestGreen';
 		c.fillRect(0, GROUND_Y -40, CANVAS_WIDTH, CANVAS_HEIGHT - GROUND_Y +40);
+
+		// Draw the nanonaut.
+		c.drawImage(nanonautImage, nanonautX, nanonautY);
 	}
 
 
