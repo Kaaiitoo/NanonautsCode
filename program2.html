@@ -16,6 +16,8 @@
 	var NANONAUT_JUMP_SPEED = 20;
 	var NANONAUT_X_SPEED = 5;
 	var BACKGROUND_WIDTH = 1000;
+	var NANONAUT_NR_FRAMES_PER_ROW = 5;
+	var NANONAUT_NR_ANIMATION_FRAMES = 7;
 
 	// SETUP
 	var canvas = document.createElement('canvas');
@@ -27,7 +29,7 @@
 	document.body.appendChild(canvas);
 
 	var nanonautImage = new Image();
-	nanonautImage.src = 'nanonaut.png';
+	nanonautImage.src = 'animatednanonaut.png';
 
 	var backgroundImage = new Image();
 	backgroundImage.src = 'background.png';
