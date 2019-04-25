@@ -34,6 +34,7 @@
 
 	window.addEventListener('load', start);
 	window.addEventListener('keydown', onKeyDown);
+	window.addEventListener('keyup', onKeyUp);
 
 	function start(){
 		window.requestAnimationFrame(mainLoop);
@@ -50,6 +51,12 @@
 	function onKeyDown(event){
 		if (event.keyCode === SPACE_KEYCODE){
 			spaceKeyIsPressed = true;
+		}
+	}
+
+	function onKeyUp(event){
+		if (event.keyCode === SPACE_KEYCODE){
+			spaceKeyIsPressed = false;
 		}
 	}
 
