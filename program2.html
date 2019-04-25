@@ -46,7 +46,11 @@
 
 	// UPDATING
 	function update(){
+		nanonautY = nanonautY + 1; // updates nanonaut
 
+		if (nanonautY > (GROUND_Y - NANONAUT_HEIGHT)){
+			nanonautY = GROUND_Y - NANONAUT_HEIGHT;
+		}
 	}
 
 	//DRAWING
