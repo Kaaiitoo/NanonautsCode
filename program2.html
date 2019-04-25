@@ -32,6 +32,13 @@
 	var backgroundImage = new Image();
 	backgroundImage.src = 'background.png';
 
+	var nanonautSpriteSheet = {
+		nrFramesPerRow: 5,
+		spriteWidth: NANONAUT_WIDTH,
+		spriteHeight: NANONAUT_HEIGHT,
+		image: nanonautImage
+	};
+
 	var nanonautX = CANVAS_WIDTH / 2;
 	var nanonautY = GROUND_Y - NANONAUT_HEIGHT;
 
