@@ -31,6 +31,7 @@
 	var nanonautY = 40;
 
 	window.addEventListener('load', start);
+	window.addEventListener('keydown', onKeyDown);
 
 	function start(){
 		window.requestAnimationFrame(mainLoop);
@@ -44,7 +45,10 @@
 	}
 
 	// PLAYER INPUT
-	
+	function onKeyDown(event){
+		if (event.keyCode === 32)
+		console.log("Space key pressed");
+	}
 
 	// UPDATING
 	function update(){
