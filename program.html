@@ -35,9 +35,19 @@
 	window.addEventListener('load', start);
 	function start(){
 		c.fillStyle = 'green';
-		c.fillRect(10, 10, 30, 30);
+		c.fillRect(20, 20, 30, 30);
 		c.drawImage(image, 20, 40);	
 		}
+
+	var x = 0;
+	var y = 40;
+
+	window.addEventListener('load', start);
+	function start(){
+		window.requestAnimationFrame(loop);
+	}
+
+
 </script>
 </body>
 </html>
