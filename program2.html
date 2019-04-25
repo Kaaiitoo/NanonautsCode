@@ -44,8 +44,6 @@
 	var nanonautIsInTheAir = false;
 	}
 
-	nanonautX = nanonautX + NANONAUT_X_SPEED;
-
 	// MAIN LOOP
 	function mainLoop(){
 		update();
@@ -68,6 +66,7 @@
 
 	// UPDATING
 	function update(){
+		nanonautX = nanonautX + NANONAUT_X_SPEED;
 		nanonautY = nanonautY + nanonautYSpeed;
 		nanonautYSpeed = nanonautYSpeed + NANONAUT_Y_ACCELERATION;
 		if (spaceKeyIsPressed){
