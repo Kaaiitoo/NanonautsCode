@@ -13,6 +13,7 @@
 	var GROUND_Y = 540;
 	var NANONAUT_Y_ACCELERATION = 1;
 	var SPACE_KEYCODE = 32;
+	var NANONAUT_JUMP_SPEED = 20;
 
 	// SETUP
 	var canvas = document.createElement('canvas');
@@ -64,6 +65,9 @@
 	function update(){
 		nanonautY = nanonautY + nanonautYSpeed;
 		nanonautYSpeed = nanonautYSpeed + NANONAUT_Y_ACCELERATION;
+		if (spaceKeyIsPressed){
+			nanonautYSpeed = -NANONAUT_JUMP_SPEED;
+		}
 
 		if (nanonautY > (GROUND_Y - NANONAUT_HEIGHT)){
 			nanonautY = GROUND_Y - NANONAUT_HEIGHT;
