@@ -44,6 +44,9 @@
 	var nanonautIsInTheAir = false;
 	}
 
+	var cameraX = 0;
+	var cameraY = 0;
+
 	// MAIN LOOP
 	function mainLoop(){
 		update();
@@ -80,6 +83,9 @@
 			nanonautIsInTheAir = false;
 
 		}
+
+		// update camera
+		cameraX = nanonautX - 150;
 	}
 
 	//DRAWING
@@ -98,7 +104,7 @@
 		c.fillRect(0, GROUND_Y -40, CANVAS_WIDTH, CANVAS_HEIGHT - GROUND_Y +40);
 
 		// Draw the nanonaut.
-		c.drawImage(nanonautImage, nanonautX, nanonautY);
+		c.drawImage(nanonautImage, nanonautX - cameraX, nanonautY - cameraY);
 	}
 
 
