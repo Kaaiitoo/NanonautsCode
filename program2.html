@@ -69,11 +69,14 @@
 		nanonautYSpeed = nanonautYSpeed + NANONAUT_Y_ACCELERATION;
 		if (spaceKeyIsPressed){
 			nanonautYSpeed = -NANONAUT_JUMP_SPEED;
+			nanonautIsInTheAir = true;
 		}
 
 		if (nanonautY > (GROUND_Y - NANONAUT_HEIGHT)){
 			nanonautY = GROUND_Y - NANONAUT_HEIGHT;
 			nanonautYSpeed = 0;
+			nanonautIsInTheAir = false;
+
 		}
 	}
 
