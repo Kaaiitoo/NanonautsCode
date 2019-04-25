@@ -14,10 +14,11 @@
 	var NANONAUT_Y_ACCELERATION = 1;
 	var SPACE_KEYCODE = 32;
 	var NANONAUT_JUMP_SPEED = 20;
-	var NANONAUT_X_SPEED = 100;
+	var NANONAUT_X_SPEED = 10;
 	var BACKGROUND_WIDTH = 1000;
 	var NANONAUT_NR_FRAMES_PER_ROW = 5;
 	var NANONAUT_NR_ANIMATION_FRAMES = 7;
+	var NANONAUT_ANIMATION_SPEED = 3;
 
 	// SETUP
 	var canvas = document.createElement('canvas');
@@ -56,6 +57,7 @@
 
 	var cameraX = 0;
 	var cameraY = 0;
+	var gameFrameCounter=0;
 
 	// MAIN LOOP
 	function mainLoop(){
@@ -100,9 +102,12 @@
 		cameraX = nanonautX - 150;
 
 		// update animation
+		gameFrameCounter = gameFrameCounter + 1;
+		if((gameFrameCounter % NANONAUT_ANIMATION_SPEED) === 0) {
 		nanonautFrameNr = nanonautFrameNr + 1;
 		if(nanonautFrameNr >= NANONAUT_NR_ANIMATION_FRAMES){
 			nanonautFrameNr = 0;
+		}
 		}
 	}
 
